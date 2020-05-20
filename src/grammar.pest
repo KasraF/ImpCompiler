@@ -1,0 +1,19 @@
+// Helper
+WHITESPACE = _{ " " | "\t" | "\n" }
+digit = {'0' .. '9'}
+
+// Values
+number = { "-"? ~ "0"* ~ digit+ }
+bool = { "true" | "false" }
+
+// Expressions
+expr = {
+      number
+    | bool
+    | if_expr
+    | "succ" ~ number
+    | "pred" ~ number
+    | "iszero" ~ number
+}
+
+if_expr = { "if" ~ bool ~ "then" ~ expr ~ "else" ~ expr }
